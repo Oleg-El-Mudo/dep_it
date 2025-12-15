@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,16 +16,16 @@
             --casino-dark-red: #8b0000;
             --casino-dark-green: #1b5e20;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: 
+            background:
                 radial-gradient(circle at 20% 80%, var(--casino-red) 0%, transparent 20%),
                 radial-gradient(circle at 80% 20%, var(--casino-green) 0%, transparent 20%),
                 radial-gradient(circle at 40% 40%, var(--casino-dark-red) 0%, transparent 50%),
@@ -34,13 +35,13 @@
             padding: 20px;
             overflow-x: auto;
         }
-        
+
         .container {
             max-width: 1800px;
             margin: 0 auto;
             min-width: 1600px;
         }
-        
+
         header {
             text-align: center;
             margin-bottom: 30px;
@@ -52,7 +53,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         header::before {
             content: "";
             position: absolute;
@@ -62,7 +63,7 @@
             height: 5px;
             background: linear-gradient(90deg, var(--casino-red), var(--casino-gold), var(--casino-green));
         }
-        
+
         h1 {
             font-size: 2.8rem;
             margin-bottom: 10px;
@@ -70,27 +71,28 @@
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
             letter-spacing: 2px;
         }
-        
+
         .subtitle {
             font-size: 1.3rem;
             opacity: 0.9;
             color: var(--casino-light);
         }
-        
+
         .main-content {
             display: flex;
             flex-direction: column;
             gap: 30px;
         }
-        
-        .input-section, .output-section {
+
+        .input-section,
+        .output-section {
             background: rgba(10, 10, 10, 0.8);
             padding: 25px;
             border-radius: 15px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
             border: 1px solid var(--casino-gold);
         }
-        
+
         .section-title {
             font-size: 1.6rem;
             margin-bottom: 20px;
@@ -99,19 +101,20 @@
             padding-bottom: 10px;
             text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: var(--casino-light);
         }
-        
-        textarea, input {
+
+        textarea,
+        input {
             width: 100%;
             padding: 12px 15px;
             border-radius: 8px;
@@ -121,29 +124,30 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
-        textarea:focus, input:focus {
+
+        textarea:focus,
+        input:focus {
             outline: none;
             border-color: var(--casino-gold);
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
-        
+
         textarea {
             min-height: 250px;
             resize: vertical;
             line-height: 1.5;
         }
-        
+
         .button-group {
             display: flex;
             gap: 15px;
             margin-top: 20px;
         }
-        
+
         .button-group button {
             flex: 1;
         }
-        
+
         button {
             background: linear-gradient(to right, var(--casino-red), var(--casino-dark-red));
             color: var(--casino-light);
@@ -162,7 +166,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         button::before {
             content: "";
             position: absolute;
@@ -173,35 +177,35 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: 0.5s;
         }
-        
+
         button:hover::before {
             left: 100%;
         }
-        
+
         button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(198, 40, 40, 0.6);
         }
-        
+
         button:active {
             transform: translateY(1px);
         }
-        
+
         #exportBtn {
             background: linear-gradient(to right, var(--casino-green), var(--casino-dark-green));
             box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
         }
-        
+
         #exportBtn:hover {
             box-shadow: 0 8px 20px rgba(46, 125, 50, 0.6);
         }
-        
+
         button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
         }
-        
+
         .slot-machine {
             display: flex;
             justify-content: center;
@@ -211,7 +215,7 @@
             flex-wrap: nowrap;
             padding: 20px 0;
         }
-        
+
         .slot {
             width: 320px;
             height: 420px;
@@ -219,13 +223,13 @@
             border-radius: 12px;
             overflow: hidden;
             position: relative;
-            box-shadow: 
+            box-shadow:
                 inset 0 0 20px rgba(0, 0, 0, 0.8),
                 0 5px 15px rgba(0, 0, 0, 0.7);
             border: 3px solid var(--casino-gold);
             flex-shrink: 0;
         }
-        
+
         .slot::before {
             content: "";
             position: absolute;
@@ -237,14 +241,14 @@
             z-index: 2;
             pointer-events: none;
         }
-        
+
         .slot-reel {
             position: absolute;
             width: 100%;
             transition: transform 2s cubic-bezier(0.1, 0.8, 0.2, 1);
             z-index: 1;
         }
-        
+
         .slot-item {
             height: 140px;
             display: flex;
@@ -260,11 +264,11 @@
             overflow: hidden;
             word-wrap: break-word;
         }
-        
+
         .slot-item:nth-child(odd) {
             background: rgba(40, 40, 40, 0.9);
         }
-        
+
         .slot-center {
             position: absolute;
             top: 50%;
@@ -279,7 +283,7 @@
             pointer-events: none;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
-        
+
         .current-ticket {
             background: linear-gradient(135deg, var(--casino-dark), var(--casino-dark-red));
             border-radius: 12px;
@@ -291,7 +295,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .current-ticket::before {
             content: "";
             position: absolute;
@@ -301,7 +305,7 @@
             height: 5px;
             background: linear-gradient(90deg, var(--casino-red), var(--casino-gold), var(--casino-green));
         }
-        
+
         .ticket-header {
             display: flex;
             justify-content: space-between;
@@ -309,46 +313,46 @@
             border-bottom: 1px solid rgba(255, 215, 0, 0.3);
             padding-bottom: 15px;
         }
-        
+
         .ticket-title {
             font-weight: bold;
             color: var(--casino-gold);
             font-size: 1.3rem;
             text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
         }
-        
+
         .ticket-questions {
             list-style-type: decimal;
             padding-left: 25px;
         }
-        
+
         .ticket-questions li {
             margin-bottom: 12px;
             padding-left: 8px;
             line-height: 1.5;
             font-size: 1.05rem;
         }
-        
+
         .results {
             max-height: 600px;
             overflow-y: auto;
             padding-right: 10px;
         }
-        
+
         .results::-webkit-scrollbar {
             width: 10px;
         }
-        
+
         .results::-webkit-scrollbar-track {
             background: rgba(30, 30, 30, 0.8);
             border-radius: 10px;
         }
-        
+
         .results::-webkit-scrollbar-thumb {
             background: linear-gradient(to bottom, var(--casino-red), var(--casino-dark-red));
             border-radius: 10px;
         }
-        
+
         .ticket {
             background: linear-gradient(135deg, var(--casino-dark), var(--casino-dark-green));
             border-radius: 10px;
@@ -359,7 +363,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .ticket::before {
             content: "";
             position: absolute;
@@ -369,7 +373,7 @@
             height: 3px;
             background: linear-gradient(90deg, var(--casino-green), var(--casino-gold), var(--casino-red));
         }
-        
+
         .notification {
             position: fixed;
             top: 20px;
@@ -384,11 +388,11 @@
             z-index: 1000;
             border-left: 5px solid var(--casino-gold);
         }
-        
+
         .notification.show {
             transform: translateX(0);
         }
-        
+
         .stats {
             display: flex;
             justify-content: space-between;
@@ -399,25 +403,25 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
             border: 1px solid var(--casino-red);
         }
-        
+
         .stat-item {
             text-align: center;
             flex: 1;
         }
-        
+
         .stat-value {
             font-size: 1.8rem;
             font-weight: bold;
             color: var(--casino-gold);
             text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
         }
-        
+
         .stat-label {
             font-size: 0.95rem;
             opacity: 0.9;
             margin-top: 5px;
         }
-        
+
         .generation-progress {
             margin-top: 25px;
             text-align: center;
@@ -426,7 +430,7 @@
             border-radius: 10px;
             border: 1px solid var(--casino-green);
         }
-        
+
         .progress-bar {
             height: 12px;
             background: rgba(50, 50, 50, 0.8);
@@ -435,7 +439,7 @@
             margin-top: 15px;
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
         }
-        
+
         .progress-fill {
             height: 100%;
             background: linear-gradient(to right, var(--casino-red), var(--casino-gold));
@@ -443,28 +447,36 @@
             transition: width 0.5s ease;
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
-        
+
         .progress-text {
             font-size: 1.1rem;
             color: var(--casino-light);
         }
-        
+
         .gold-text {
             color: var(--casino-gold);
             font-weight: bold;
         }
-        
+
+        .output-section.hidden {
+            display: none;
+        }
+
+        .current-ticket-container.hidden {
+            display: none;
+        }
+
         @media (max-width: 1800px) {
             .container {
                 min-width: auto;
                 max-width: 95%;
             }
-            
+
             .slot-machine {
                 justify-content: flex-start;
                 overflow-x: auto;
             }
-            
+
             .button-group {
                 flex-direction: column;
             }
@@ -473,48 +485,50 @@
     <!-- Подключаем библиотеку SheetJS для работы с Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>Деп IT 2.0</h1>
             <p class="subtitle">Генератор билетов</p>
         </header>
-        
+
         <div class="main-content">
             <section class="input-section">
                 <h2 class="section-title">Параметры генерации</h2>
-                
+
                 <div class="form-group">
                     <label for="questions">Список вопросов (по одному на строку):</label>
                     <textarea id="questions" placeholder="Введите вопросы здесь..."></textarea>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="studentsCount">Количество студентов (билетов):</label>
                     <input type="number" id="studentsCount" min="1" value="11">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="questionsPerTicket">Количество вопросов в билете:</label>
                     <input type="number" id="questionsPerTicket" min="1" value="5">
                 </div>
-                
+
                 <div class="button-group">
                     <button id="generateBtn">Запустить генерацию</button>
                     <button id="exportBtn" disabled>Экспорт в Excel</button>
                 </div>
-                
+
                 <div class="slot-machine" id="slotMachine">
                     <!-- Слоты будут созданы динамически -->
                 </div>
-                
+
                 <div class="generation-progress">
-                    <div class="progress-text">Генерация билета: <span class="gold-text" id="currentTicket">-</span> из <span class="gold-text" id="totalTickets">-</span></div>
+                    <div class="progress-text">Генерация билета: <span class="gold-text" id="currentTicket">-</span> из
+                        <span class="gold-text" id="totalTickets">-</span></div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
                 </div>
-                
+
                 <div class="stats">
                     <div class="stat-item">
                         <div class="stat-value" id="totalQuestions">50</div>
@@ -530,15 +544,17 @@
                     </div>
                 </div>
             </section>
-            
+
             <section class="output-section">
-                <h2 class="section-title">Текущий билет</h2>
-                <div class="current-ticket" id="currentTicketContainer">
-                    <p style="text-align: center; opacity: 0.7; margin-top: 70px;">
-                        Билет появится здесь во время генерации
-                    </p>
+                <div class="current-ticket-container hidden" id="currentTicketSection">
+                    <h2 class="section-title">Текущий билет</h2>
+                    <div class="current-ticket" id="currentTicketContainer">
+                        <p style="text-align: center; opacity: 0.7; margin-top: 70px;">
+                            Билет появится здесь во время генерации
+                        </p>
+                    </div>
                 </div>
-                
+
                 <h2 class="section-title">Результаты генерации</h2>
                 <div class="results" id="resultsContainer">
                     <p style="text-align: center; opacity: 0.7; margin-top: 70px;">
@@ -548,415 +564,441 @@
             </section>
         </div>
     </div>
-    
+
     <div class="notification" id="notification">Билеты успешно сгенерированы!</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const questionsTextarea = document.getElementById('questions');
-            const studentsCountInput = document.getElementById('studentsCount');
-            const questionsPerTicketInput = document.getElementById('questionsPerTicket');
-            const generateBtn = document.getElementById('generateBtn');
-            const exportBtn = document.getElementById('exportBtn');
-            const slotMachine = document.getElementById('slotMachine');
-            const currentTicketContainer = document.getElementById('currentTicketContainer');
-            const resultsContainer = document.getElementById('resultsContainer');
-            const notification = document.getElementById('notification');
-            const totalQuestionsSpan = document.getElementById('totalQuestions');
-            const generatedTicketsSpan = document.getElementById('generatedTickets');
-            const uniqueQuestionsSpan = document.getElementById('uniqueQuestions');
-            const currentTicketSpan = document.getElementById('currentTicket');
-            const totalTicketsSpan = document.getElementById('totalTickets');
-            const progressFill = document.getElementById('progressFill');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const questionsTextarea = document.getElementById('questions');
+        const studentsCountInput = document.getElementById('studentsCount');
+        const questionsPerTicketInput = document.getElementById('questionsPerTicket');
+        const generateBtn = document.getElementById('generateBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const slotMachine = document.getElementById('slotMachine');
+        const currentTicketContainer = document.getElementById('currentTicketContainer');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const notification = document.getElementById('notification');
+        const totalQuestionsSpan = document.getElementById('totalQuestions');
+        const generatedTicketsSpan = document.getElementById('generatedTickets');
+        const uniqueQuestionsSpan = document.getElementById('uniqueQuestions');
+        const currentTicketSpan = document.getElementById('currentTicket');
+        const totalTicketsSpan = document.getElementById('totalTickets');
+        const progressFill = document.getElementById('progressFill');
+        const currentTicketSection = document.getElementById('currentTicketSection');
+        
+        let slots = [];
+        let isGenerating = false;
+        let generatedTickets = [];
+        
+        // Функции управления видимостью текущего билета
+        function showCurrentTicketSection() {
+            currentTicketSection.classList.remove('hidden');
+        }
+        
+        function hideCurrentTicketSection() {
+            currentTicketSection.classList.add('hidden');
+        }
+        
+        // Обновляем статистику при изменении вопросов
+        questionsTextarea.addEventListener('input', updateStats);
+        
+        function updateStats() {
+            const questions = getQuestionsList();
+            totalQuestionsSpan.textContent = questions.length;
+        }
+        
+        function getQuestionsList() {
+            return questionsTextarea.value
+                .split('\n')
+                .map(q => q.trim())
+                .filter(q => q.length > 0);
+        }
+        
+        function createSlots(count) {
+            slotMachine.innerHTML = '';
+            slots = [];
             
-            let slots = [];
-            let isGenerating = false;
-            let generatedTickets = [];
-            
-            // Обновляем статистику при изменении вопросов
-            questionsTextarea.addEventListener('input', updateStats);
-            
-            function updateStats() {
-                const questions = getQuestionsList();
-                totalQuestionsSpan.textContent = questions.length;
-            }
-            
-            function getQuestionsList() {
-                return questionsTextarea.value
-                    .split('\n')
-                    .map(q => q.trim())
-                    .filter(q => q.length > 0);
-            }
-            
-            function createSlots(count) {
-                slotMachine.innerHTML = '';
-                slots = [];
+            for (let i = 0; i < count; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'slot';
                 
-                for (let i = 0; i < count; i++) {
-                    const slot = document.createElement('div');
-                    slot.className = 'slot';
-                    
-                    const reel = document.createElement('div');
-                    reel.className = 'slot-reel';
-                    reel.id = `reel-${i}`;
-                    
-                    const center = document.createElement('div');
-                    center.className = 'slot-center';
-                    
-                    slot.appendChild(reel);
-                    slot.appendChild(center);
-                    slotMachine.appendChild(slot);
-                    
-                    slots.push({
-                        element: reel,
-                        position: 0,
-                        spinning: false
-                    });
+                const reel = document.createElement('div');
+                reel.className = 'slot-reel';
+                reel.id = `reel-${i}`;
+                
+                const center = document.createElement('div');
+                center.className = 'slot-center';
+                
+                slot.appendChild(reel);
+                slot.appendChild(center);
+                slotMachine.appendChild(slot);
+                
+                slots.push({
+                    element: reel,
+                    position: 0,
+                    spinning: false
+                });
+            }
+        }
+        
+        function fillSlotReel(slotIndex, questions) {
+            const reel = slots[slotIndex].element;
+            reel.innerHTML = '';
+            
+            // Добавляем дополнительные вопросы для непрерывной прокрутки
+            const extendedQuestions = [...questions, ...questions, ...questions];
+            
+            extendedQuestions.forEach((question, index) => {
+                const item = document.createElement('div');
+                item.className = 'slot-item';
+                item.textContent = question;
+                item.dataset.index = index % questions.length;
+                reel.appendChild(item);
+            });
+            
+            // Устанавливаем начальную позицию
+            slots[slotIndex].position = questions.length * 140; // Начинаем со второй копии
+            reel.style.transform = `translateY(-${slots[slotIndex].position}px)`;
+        }
+        
+        function spinSlot(slotIndex, targetQuestionIndex, duration, callback) {
+            const slot = slots[slotIndex];
+            const questions = getQuestionsList();
+            const itemHeight = 140;
+            
+            // ИСПРАВЛЕНИЕ: Правильно вычисляем целевую позицию
+            // Центрируем выбранный вопрос в желтой области
+            const targetPosition = (questions.length + targetQuestionIndex-1) * itemHeight;
+            
+            slot.spinning = true;
+            
+            const startTime = Date.now();
+            const startPosition = slot.position;
+            
+            function animate() {
+                if (!slot.spinning) return;
+                
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Используем easing для плавного замедления
+                const easeOut = 1 - Math.pow(1 - progress, 4);
+                
+                // Вычисляем новую позицию
+                const newPosition = startPosition + (targetPosition - startPosition) * easeOut;
+                slot.position = newPosition;
+                slot.element.style.transform = `translateY(-${newPosition}px)`;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    slot.spinning = false;
+                    if (callback) callback();
                 }
             }
             
-            function fillSlotReel(slotIndex, questions) {
-                const reel = slots[slotIndex].element;
-                reel.innerHTML = '';
-                
-                // Добавляем дополнительные вопросы для непрерывной прокрутки
-                const extendedQuestions = [...questions, ...questions, ...questions];
-                
-                extendedQuestions.forEach((question, index) => {
-                    const item = document.createElement('div');
-                    item.className = 'slot-item';
-                    item.textContent = question;
-                    item.dataset.index = index % questions.length;
-                    reel.appendChild(item);
+            animate();
+        }
+        
+        function spinAllSlots(questionIndices, duration, callback) {
+            let completed = 0;
+            const total = slots.length;
+            
+            questionIndices.forEach((questionIndex, slotIndex) => {
+                spinSlot(slotIndex, questionIndex, duration, () => {
+                    completed++;
+                    if (completed === total && callback) {
+                        callback();
+                    }
                 });
-                
-                // Устанавливаем начальную позицию
-                slots[slotIndex].position = questions.length * 140; // Начинаем со второй копии
-                reel.style.transform = `translateY(-${slots[slotIndex].position}px)`;
+            });
+        }
+        
+        generateBtn.addEventListener('click', async function() {
+            if (isGenerating) return;
+            
+            const questions = getQuestionsList();
+            const studentsCount = parseInt(studentsCountInput.value);
+            const questionsPerTicket = parseInt(questionsPerTicketInput.value);
+            
+            if (questions.length === 0) {
+                showNotification('Добавьте хотя бы один вопрос!', 'error');
+                hideCurrentTicketSection();
+                return;
             }
             
-            function spinSlot(slotIndex, targetQuestionIndex, duration, callback) {
-                const slot = slots[slotIndex];
-                const questions = getQuestionsList();
-                const itemHeight = 140;
+            if (studentsCount < 1) {
+                showNotification('Количество студентов должно быть больше 0!', 'error');
+                hideCurrentTicketSection();
+                return;
+            }
+            
+            if (questionsPerTicket < 1) {
+                showNotification('Количество вопросов в билете должно быть больше 0!', 'error');
+                hideCurrentTicketSection();
+                return;
+            }
+            
+            if (questions.length < questionsPerTicket) {
+                showNotification('В пуле вопросов меньше, чем требуется для одного билета!', 'error');
+                hideCurrentTicketSection();
+                return;
+            }
+            
+            // Показываем секцию текущего билета
+            showCurrentTicketSection();
+            
+            isGenerating = true;
+            generateBtn.disabled = true;
+            exportBtn.disabled = true;
+            resultsContainer.innerHTML = '';
+            
+            // Создаем слоты
+            createSlots(questionsPerTicket);
+            
+            // Заполняем слоты вопросами
+            for (let i = 0; i < questionsPerTicket; i++) {
+                fillSlotReel(i, questions);
+            }
+            
+            // Генерируем билеты
+            generatedTickets = generateTickets(questions, studentsCount, questionsPerTicket);
+            const usedQuestions = new Set();
+            
+            totalTicketsSpan.textContent = studentsCount;
+            progressFill.style.width = '0%';
+            
+            // Анимируем генерацию каждого билета
+            for (let i = 0; i < generatedTickets.length; i++) {
+                currentTicketSpan.textContent = i + 1;
+                progressFill.style.width = `${((i + 1) / generatedTickets.length) * 100}%`;
                 
-                // ИСПРАВЛЕНИЕ: Правильно вычисляем целевую позицию
-                // Центрируем выбранный вопрос в желтой области
-                const targetPosition = (questions.length + targetQuestionIndex-1) * itemHeight;
+                // Показываем текущий билет
+                displayCurrentTicket(generatedTickets[i]);
                 
-                slot.spinning = true;
+                // Добавляем вопросы в статистику
+                generatedTickets[i].questions.forEach(q => usedQuestions.add(q));
+                uniqueQuestionsSpan.textContent = usedQuestions.size;
+                generatedTicketsSpan.textContent = i + 1;
                 
-                const startTime = Date.now();
-                const startPosition = slot.position;
+                // Получаем индексы вопросов для текущего билета
+                const questionIndices = generatedTickets[i].questions.map(q => questions.indexOf(q));
                 
-                function animate() {
-                    if (!slot.spinning) return;
+                await new Promise(resolve => {
+                    // Запускаем анимацию слотов
+                    spinAllSlots(questionIndices, 2000, () => {
+                        // Ждем 1-2 секунды перед следующим билетом
+                        setTimeout(resolve, 1500);
+                    });
+                });
+                
+                // Сохраняем готовый билет
+                displayFinalTicket(generatedTickets[i]);
+            }
+            
+            isGenerating = false;
+            generateBtn.disabled = false;
+            exportBtn.disabled = false;
+            
+            // Скрываем секцию текущего билета после завершения генерации
+            setTimeout(() => {
+                hideCurrentTicketSection();
+            }, 500);
+            
+            showNotification(`Успешно сгенерировано ${studentsCount} билетов!`);
+        });
+        
+        function generateTickets(questions, studentsCount, questionsPerTicket) {
+            const tickets = [];
+            const totalQuestions = questions.length;
+            
+            // Разбиваем вопросы на равные диапазоны для каждого вопроса в билете
+            const rangeSize = Math.ceil(totalQuestions / questionsPerTicket);
+            
+            for (let i = 0; i < studentsCount; i++) {
+                const ticketQuestions = [];
+                
+                for (let j = 0; j < questionsPerTicket; j++) {
+                    // Определяем диапазон для текущего вопроса в билете
+                    const rangeStart = j * rangeSize;
+                    let rangeEnd = (j + 1) * rangeSize;
                     
-                    const elapsed = Date.now() - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
+                    // Если выходим за пределы массива, ограничиваем последним вопросом
+                    if (rangeEnd > totalQuestions) {
+                        rangeEnd = totalQuestions;
+                    }
                     
-                    // Используем easing для плавного замедления
-                    const easeOut = 1 - Math.pow(1 - progress, 4);
+                    // Если диапазон пустой (может случиться при малом количестве вопросов)
+                    if (rangeStart >= rangeEnd) {
+                        // Берем случайный вопрос из оставшихся
+                        const availableQuestions = questions.filter(q => !ticketQuestions.includes(q));
+                        if (availableQuestions.length > 0) {
+                            const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+                            ticketQuestions.push(availableQuestions[randomIndex]);
+                        } else {
+                            // Если вопросы закончились, берем из общего списка
+                            const randomIndex = Math.floor(Math.random() * questions.length);
+                            ticketQuestions.push(questions[randomIndex]);
+                        }
+                        continue;
+                    }
                     
-                    // Вычисляем новую позицию
-                    const newPosition = startPosition + (targetPosition - startPosition) * easeOut;
-                    slot.position = newPosition;
-                    slot.element.style.transform = `translateY(-${newPosition}px)`;
+                    // Выбираем случайный вопрос из текущего диапазона
+                    const rangeQuestions = questions.slice(rangeStart, rangeEnd);
                     
-                    if (progress < 1) {
-                        requestAnimationFrame(animate);
+                    // Исключаем вопросы, которые уже есть в этом билете
+                    const availableRangeQuestions = rangeQuestions.filter(q => !ticketQuestions.includes(q));
+                    
+                    let selectedQuestion;
+                    if (availableRangeQuestions.length > 0) {
+                        // Если есть доступные вопросы в диапазоне, выбираем случайный из них
+                        const randomIndex = Math.floor(Math.random() * availableRangeQuestions.length);
+                        selectedQuestion = availableRangeQuestions[randomIndex];
                     } else {
-                        slot.spinning = false;
-                        if (callback) callback();
+                        // Если все вопросы из диапазона уже использованы в этом билете,
+                        // выбираем случайный из всего диапазона
+                        const randomIndex = Math.floor(Math.random() * rangeQuestions.length);
+                        selectedQuestion = rangeQuestions[randomIndex];
+                    }
+                    
+                    ticketQuestions.push(selectedQuestion);
+                }
+                
+                // Проверяем уникальность билета
+                const ticketKey = ticketQuestions.sort().join('|');
+                const isUnique = !tickets.some(t => t.key === ticketKey);
+                
+                if (isUnique) {
+                    tickets.push({
+                        id: i + 1,
+                        questions: ticketQuestions,
+                        key: ticketKey
+                    });
+                } else {
+                    // Если билет не уникален, пытаемся сгенерировать заново
+                    i--;
+                    
+                    // Защита от бесконечного цикла
+                    if (i < -100) {
+                        console.warn('Не удалось сгенерировать уникальные билеты. Возможно, слишком мало вопросов.');
+                        break;
                     }
                 }
-                
-                animate();
             }
             
-            function spinAllSlots(questionIndices, duration, callback) {
-                let completed = 0;
-                const total = slots.length;
+            return tickets;
+        }
+        
+        function displayCurrentTicket(ticket) {
+            currentTicketContainer.innerHTML = `
+                <div class="ticket-header">
+                    <span class="ticket-title">Билет №${ticket.id}</span>
+                </div>
+                <ol class="ticket-questions">
+                    ${ticket.questions.map(q => `<li>${q}</li>`).join('')}
+                </ol>
+            `;
+        }
+        
+        function displayFinalTicket(ticket) {
+            const ticketElement = document.createElement('div');
+            ticketElement.className = 'ticket';
+            
+            ticketElement.innerHTML = `
+                <div class="ticket-header">
+                    <span class="ticket-title">Билет №${ticket.id}</span>
+                </div>
+                <ol class="ticket-questions">
+                    ${ticket.questions.map(q => `<li>${q}</li>`).join('')}
+                </ol>
+            `;
+            
+            resultsContainer.appendChild(ticketElement);
+        }
+        
+        // Функция для экспорта в Excel
+        exportBtn.addEventListener('click', function() {
+            if (generatedTickets.length === 0) {
+                showNotification('Сначала сгенерируйте билеты!', 'error');
+                return;
+            }
+            
+            try {
+                // Создаем массив данных для Excel
+                const data = [];
                 
-                questionIndices.forEach((questionIndex, slotIndex) => {
-                    spinSlot(slotIndex, questionIndex, duration, () => {
-                        completed++;
-                        if (completed === total && callback) {
-                            callback();
-                        }
-                    });
+                // Добавляем заголовки
+                data.push(['Билет', 'Вопросы']);
+                
+                // Добавляем билеты в формате: билет в первой строке, вопросы в следующих
+                generatedTickets.forEach(ticket => {
+                    // Первая строка для билета: номер билета в первом столбце, первый вопрос во втором
+                    data.push([`Билет ${ticket.id}`, ticket.questions[0]]);
+                    
+                    // Остальные вопросы билета: пустой первый столбец, вопрос во втором
+                    for (let i = 1; i < ticket.questions.length; i++) {
+                        data.push(['', ticket.questions[i]]);
+                    }
+                    
+                    // Добавляем пустую строку между билетами для лучшей читаемости
+                    data.push(['', '']);
                 });
+                
+                // Создаем рабочую книгу Excel
+                const wb = XLSX.utils.book_new();
+                
+                // Создаем рабочий лист из данных
+                const ws = XLSX.utils.aoa_to_sheet(data);
+                
+                // Настраиваем ширину столбцов
+                const colWidths = [
+                    { wch: 15 }, // Ширина первого столбца (Билет)
+                    { wch: 80 }  // Ширина второго столбца (Вопросы)
+                ];
+                ws['!cols'] = colWidths;
+                
+                // Добавляем рабочий лист в книгу
+                XLSX.utils.book_append_sheet(wb, ws, 'Билеты');
+                
+                // Генерируем имя файла с датой
+                const date = new Date();
+                const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()}`;
+                const fileName = `билеты_${dateStr}.xlsx`;
+                
+                // Сохраняем файл
+                XLSX.writeFile(wb, fileName);
+                
+                showNotification(`Экспортировано ${generatedTickets.length} билетов в Excel!`);
+            } catch (error) {
+                console.error('Ошибка при экспорте в Excel:', error);
+                showNotification('Ошибка при экспорте в Excel!', 'error');
             }
-            
-            generateBtn.addEventListener('click', async function() {
-                if (isGenerating) return;
-                
-                const questions = getQuestionsList();
-                const studentsCount = parseInt(studentsCountInput.value);
-                const questionsPerTicket = parseInt(questionsPerTicketInput.value);
-                
-                if (questions.length === 0) {
-                    showNotification('Добавьте хотя бы один вопрос!', 'error');
-                    return;
-                }
-                
-                if (studentsCount < 1) {
-                    showNotification('Количество студентов должно быть больше 0!', 'error');
-                    return;
-                }
-                
-                if (questionsPerTicket < 1) {
-                    showNotification('Количество вопросов в билете должно быть больше 0!', 'error');
-                    return;
-                }
-                
-                if (questions.length < questionsPerTicket) {
-                    showNotification('В пуле вопросов меньше, чем требуется для одного билета!', 'error');
-                    return;
-                }
-                
-                isGenerating = true;
-                generateBtn.disabled = true;
-                exportBtn.disabled = true;
-                resultsContainer.innerHTML = '';
-                
-                // Создаем слоты
-                createSlots(questionsPerTicket);
-                
-                // Заполняем слоты вопросами
-                for (let i = 0; i < questionsPerTicket; i++) {
-                    fillSlotReel(i, questions);
-                }
-                
-                // Генерируем билеты
-                generatedTickets = generateTickets(questions, studentsCount, questionsPerTicket);
-                const usedQuestions = new Set();
-                
-                totalTicketsSpan.textContent = studentsCount;
-                progressFill.style.width = '0%';
-                
-                // Анимируем генерацию каждого билета
-                for (let i = 0; i < generatedTickets.length; i++) {
-                    currentTicketSpan.textContent = i + 1;
-                    progressFill.style.width = `${((i + 1) / generatedTickets.length) * 100}%`;
-                    
-                    // Показываем текущий билет
-                    displayCurrentTicket(generatedTickets[i]);
-                    
-                    // Добавляем вопросы в статистику
-                    generatedTickets[i].questions.forEach(q => usedQuestions.add(q));
-                    uniqueQuestionsSpan.textContent = usedQuestions.size;
-                    generatedTicketsSpan.textContent = i + 1;
-                    
-                    // Получаем индексы вопросов для текущего билета
-                    const questionIndices = generatedTickets[i].questions.map(q => questions.indexOf(q));
-                    
-                    await new Promise(resolve => {
-                        // Запускаем анимацию слотов
-                        spinAllSlots(questionIndices, 2000, () => {
-                            // Ждем 1-2 секунды перед следующим билетом
-                            setTimeout(resolve, 1500);
-                        });
-                    });
-                    
-                    // Сохраняем готовый билет
-                    displayFinalTicket(generatedTickets[i]);
-                }
-                
-                isGenerating = false;
-                generateBtn.disabled = false;
-                exportBtn.disabled = false;
-                showNotification(`Успешно сгенерировано ${studentsCount} билетов!`);
-            });
-            
-            function generateTickets(questions, studentsCount, questionsPerTicket) {
-    const tickets = [];
-    const totalQuestions = questions.length;
-    
-    // Разбиваем вопросы на равные диапазоны для каждого вопроса в билете
-    const rangeSize = Math.ceil(totalQuestions / questionsPerTicket);
-    
-    for (let i = 0; i < studentsCount; i++) {
-        const ticketQuestions = [];
-        
-        for (let j = 0; j < questionsPerTicket; j++) {
-            // Определяем диапазон для текущего вопроса в билете
-            const rangeStart = j * rangeSize;
-            let rangeEnd = (j + 1) * rangeSize;
-            
-            // Если выходим за пределы массива, ограничиваем последним вопросом
-            if (rangeEnd > totalQuestions) {
-                rangeEnd = totalQuestions;
-            }
-            
-            // Если диапазон пустой (может случиться при малом количестве вопросов)
-            if (rangeStart >= rangeEnd) {
-                // Берем случайный вопрос из оставшихся
-                const availableQuestions = questions.filter(q => !ticketQuestions.includes(q));
-                if (availableQuestions.length > 0) {
-                    const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-                    ticketQuestions.push(availableQuestions[randomIndex]);
-                } else {
-                    // Если вопросы закончились, берем из общего списка
-                    const randomIndex = Math.floor(Math.random() * questions.length);
-                    ticketQuestions.push(questions[randomIndex]);
-                }
-                continue;
-            }
-            
-            // Выбираем случайный вопрос из текущего диапазона
-            const rangeQuestions = questions.slice(rangeStart, rangeEnd);
-            
-            // Исключаем вопросы, которые уже есть в этом билете
-            const availableRangeQuestions = rangeQuestions.filter(q => !ticketQuestions.includes(q));
-            
-            let selectedQuestion;
-            if (availableRangeQuestions.length > 0) {
-                // Если есть доступные вопросы в диапазоне, выбираем случайный из них
-                const randomIndex = Math.floor(Math.random() * availableRangeQuestions.length);
-                selectedQuestion = availableRangeQuestions[randomIndex];
-            } else {
-                // Если все вопросы из диапазона уже использованы в этом билете,
-                // выбираем случайный из всего диапазона
-                const randomIndex = Math.floor(Math.random() * rangeQuestions.length);
-                selectedQuestion = rangeQuestions[randomIndex];
-            }
-            
-            ticketQuestions.push(selectedQuestion);
-        }
-        
-        // Проверяем уникальность билета
-        const ticketKey = ticketQuestions.sort().join('|');
-        const isUnique = !tickets.some(t => t.key === ticketKey);
-        
-        if (isUnique) {
-            tickets.push({
-                id: i + 1,
-                questions: ticketQuestions,
-                key: ticketKey
-            });
-        } else {
-            // Если билет не уникален, пытаемся сгенерировать заново
-            i--;
-            
-            // Защита от бесконечного цикла
-            if (i < -100) {
-                console.warn('Не удалось сгенерировать уникальные билеты. Возможно, слишком мало вопросов.');
-                break;
-            }
-        }
-    }
-    
-    return tickets;
-}
-            function displayCurrentTicket(ticket) {
-                currentTicketContainer.innerHTML = `
-                    <div class="ticket-header">
-                        <span class="ticket-title">Билет №${ticket.id}</span>
-                    </div>
-                    <ol class="ticket-questions">
-                        ${ticket.questions.map(q => `<li>${q}</li>`).join('')}
-                    </ol>
-                `;
-            }
-            
-            function displayFinalTicket(ticket) {
-                const ticketElement = document.createElement('div');
-                ticketElement.className = 'ticket';
-                
-                ticketElement.innerHTML = `
-                    <div class="ticket-header">
-                        <span class="ticket-title">Билет №${ticket.id}</span>
-                    </div>
-                    <ol class="ticket-questions">
-                        ${ticket.questions.map(q => `<li>${q}</li>`).join('')}
-                    </ol>
-                `;
-                
-                resultsContainer.appendChild(ticketElement);
-            }
-            
-            // Функция для экспорта в Excel
-            exportBtn.addEventListener('click', function() {
-                if (generatedTickets.length === 0) {
-                    showNotification('Сначала сгенерируйте билеты!', 'error');
-                    return;
-                }
-                
-                try {
-                    // Создаем массив данных для Excel
-                    const data = [];
-                    
-                    // Добавляем заголовки
-                    data.push(['Билет', 'Вопросы']);
-                    
-                    // Добавляем билеты в формате: билет в первой строке, вопросы в следующих
-                    generatedTickets.forEach(ticket => {
-                        // Первая строка для билета: номер билета в первом столбце, первый вопрос во втором
-                        data.push([`Билет ${ticket.id}`, ticket.questions[0]]);
-                        
-                        // Остальные вопросы билета: пустой первый столбец, вопрос во втором
-                        for (let i = 1; i < ticket.questions.length; i++) {
-                            data.push(['', ticket.questions[i]]);
-                        }
-                        
-                        // Добавляем пустую строку между билетами для лучшей читаемости
-                        data.push(['', '']);
-                    });
-                    
-                    // Создаем рабочую книгу Excel
-                    const wb = XLSX.utils.book_new();
-                    
-                    // Создаем рабочий лист из данных
-                    const ws = XLSX.utils.aoa_to_sheet(data);
-                    
-                    // Настраиваем ширину столбцов
-                    const colWidths = [
-                        { wch: 15 }, // Ширина первого столбца (Билет)
-                        { wch: 80 }  // Ширина второго столбца (Вопросы)
-                    ];
-                    ws['!cols'] = colWidths;
-                    
-                    // Добавляем рабочий лист в книгу
-                    XLSX.utils.book_append_sheet(wb, ws, 'Билеты');
-                    
-                    // Генерируем имя файла с датой
-                    const date = new Date();
-                    const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()}`;
-                    const fileName = `билеты_${dateStr}.xlsx`;
-                    
-                    // Сохраняем файл
-                    XLSX.writeFile(wb, fileName);
-                    
-                    showNotification(`Экспортировано ${generatedTickets.length} билетов в Excel!`);
-                } catch (error) {
-                    console.error('Ошибка при экспорте в Excel:', error);
-                    showNotification('Ошибка при экспорте в Excel!', 'error');
-                }
-            });
-            
-            function showNotification(message, type = 'success') {
-                notification.textContent = message;
-                notification.className = 'notification';
-                
-                if (type === 'error') {
-                    notification.style.background = 'var(--casino-red)';
-                } else {
-                    notification.style.background = 'var(--casino-green)';
-                }
-                
-                notification.classList.add('show');
-                
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                }, 3000);
-            }
-            
-            // Инициализация статистики
-            updateStats();
-            
-            
         });
-    </script>
+        
+        function showNotification(message, type = 'success') {
+            notification.textContent = message;
+            notification.className = 'notification';
+            
+            if (type === 'error') {
+                notification.style.background = 'var(--casino-red)';
+            } else {
+                notification.style.background = 'var(--casino-green)';
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Инициализация статистики
+        updateStats();
+        
+        // Скрываем секцию текущего билета при загрузке страницы
+        hideCurrentTicketSection();
+    });
+</script>
 </body>
+
 </html>
