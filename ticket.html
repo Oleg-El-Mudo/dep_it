@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Деп IT</title>
+    <title>Деп IT 2.0</title>
     <style>
         /* Стили остаются такими же как в предыдущей версии */
         :root {
@@ -134,6 +134,16 @@
             line-height: 1.5;
         }
         
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .button-group button {
+            flex: 1;
+        }
+        
         button {
             background: linear-gradient(to right, var(--casino-red), var(--casino-dark-red));
             color: var(--casino-light);
@@ -146,7 +156,6 @@
             font-weight: 600;
             display: block;
             width: 100%;
-            margin-top: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 5px 15px rgba(198, 40, 40, 0.4);
@@ -176,6 +185,21 @@
         
         button:active {
             transform: translateY(1px);
+        }
+        
+        #exportBtn {
+            background: linear-gradient(to right, var(--casino-green), var(--casino-dark-green));
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
+        }
+        
+        #exportBtn:hover {
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.6);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
         }
         
         .slot-machine {
@@ -440,13 +464,19 @@
                 justify-content: flex-start;
                 overflow-x: auto;
             }
+            
+            .button-group {
+                flex-direction: column;
+            }
         }
     </style>
+    <!-- Подключаем библиотеку SheetJS для работы с Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Деп IT</h1>
+            <h1>Деп IT 2.0</h1>
             <p class="subtitle">Генератор билетов</p>
         </header>
         
@@ -469,7 +499,10 @@
                     <input type="number" id="questionsPerTicket" min="1" value="5">
                 </div>
                 
-                <button id="generateBtn">Запустить генерацию</button>
+                <div class="button-group">
+                    <button id="generateBtn">Запустить генерацию</button>
+                    <button id="exportBtn" disabled>Экспорт в Excel</button>
+                </div>
                 
                 <div class="slot-machine" id="slotMachine">
                     <!-- Слоты будут созданы динамически -->
@@ -524,6 +557,7 @@
             const studentsCountInput = document.getElementById('studentsCount');
             const questionsPerTicketInput = document.getElementById('questionsPerTicket');
             const generateBtn = document.getElementById('generateBtn');
+            const exportBtn = document.getElementById('exportBtn');
             const slotMachine = document.getElementById('slotMachine');
             const currentTicketContainer = document.getElementById('currentTicketContainer');
             const resultsContainer = document.getElementById('resultsContainer');
@@ -537,6 +571,7 @@
             
             let slots = [];
             let isGenerating = false;
+            let generatedTickets = [];
             
             // Обновляем статистику при изменении вопросов
             questionsTextarea.addEventListener('input', updateStats);
@@ -682,6 +717,7 @@
                 
                 isGenerating = true;
                 generateBtn.disabled = true;
+                exportBtn.disabled = true;
                 resultsContainer.innerHTML = '';
                 
                 // Создаем слоты
@@ -693,27 +729,27 @@
                 }
                 
                 // Генерируем билеты
-                const tickets = generateTickets(questions, studentsCount, questionsPerTicket);
+                generatedTickets = generateTickets(questions, studentsCount, questionsPerTicket);
                 const usedQuestions = new Set();
                 
                 totalTicketsSpan.textContent = studentsCount;
                 progressFill.style.width = '0%';
                 
                 // Анимируем генерацию каждого билета
-                for (let i = 0; i < tickets.length; i++) {
+                for (let i = 0; i < generatedTickets.length; i++) {
                     currentTicketSpan.textContent = i + 1;
-                    progressFill.style.width = `${((i + 1) / tickets.length) * 100}%`;
+                    progressFill.style.width = `${((i + 1) / generatedTickets.length) * 100}%`;
                     
                     // Показываем текущий билет
-                    displayCurrentTicket(tickets[i]);
+                    displayCurrentTicket(generatedTickets[i]);
                     
                     // Добавляем вопросы в статистику
-                    tickets[i].questions.forEach(q => usedQuestions.add(q));
+                    generatedTickets[i].questions.forEach(q => usedQuestions.add(q));
                     uniqueQuestionsSpan.textContent = usedQuestions.size;
                     generatedTicketsSpan.textContent = i + 1;
                     
                     // Получаем индексы вопросов для текущего билета
-                    const questionIndices = tickets[i].questions.map(q => questions.indexOf(q));
+                    const questionIndices = generatedTickets[i].questions.map(q => questions.indexOf(q));
                     
                     await new Promise(resolve => {
                         // Запускаем анимацию слотов
@@ -724,56 +760,95 @@
                     });
                     
                     // Сохраняем готовый билет
-                    displayFinalTicket(tickets[i]);
+                    displayFinalTicket(generatedTickets[i]);
                 }
                 
                 isGenerating = false;
                 generateBtn.disabled = false;
+                exportBtn.disabled = false;
                 showNotification(`Успешно сгенерировано ${studentsCount} билетов!`);
             });
             
             function generateTickets(questions, studentsCount, questionsPerTicket) {
-                const tickets = [];
-                const totalQuestions = questions.length;
-                
-                // Создаем сегменты вопросов для равномерного распределения
-                const segmentSize = Math.ceil(totalQuestions / questionsPerTicket);
-                
-                for (let i = 0; i < studentsCount; i++) {
-                    const ticketQuestions = [];
-                    
-                    for (let j = 0; j < questionsPerTicket; j++) {
-                        // Определяем сегмент для текущего вопроса
-                        const segmentStart = Math.floor(j * segmentSize);
-                        const segmentEnd = Math.min(segmentStart + segmentSize, totalQuestions);
-                        
-                        // Выбираем случайный вопрос из сегмента
-                        const segmentQuestions = questions.slice(segmentStart, segmentEnd);
-                        const randomIndex = Math.floor(Math.random() * segmentQuestions.length);
-                        const selectedQuestion = segmentQuestions[randomIndex];
-                        
-                        ticketQuestions.push(selectedQuestion);
-                    }
-                    
-                    // Проверяем уникальность билета
-                    const ticketKey = ticketQuestions.sort().join('|');
-                    const isUnique = !tickets.some(t => t.key === ticketKey);
-                    
-                    if (isUnique) {
-                        tickets.push({
-                            id: i + 1,
-                            questions: ticketQuestions,
-                            key: ticketKey
-                        });
-                    } else {
-                        // Если билет не уникален, пытаемся сгенерировать заново
-                        i--;
-                    }
-                }
-                
-                return tickets;
+    const tickets = [];
+    const totalQuestions = questions.length;
+    
+    // Разбиваем вопросы на равные диапазоны для каждого вопроса в билете
+    const rangeSize = Math.ceil(totalQuestions / questionsPerTicket);
+    
+    for (let i = 0; i < studentsCount; i++) {
+        const ticketQuestions = [];
+        
+        for (let j = 0; j < questionsPerTicket; j++) {
+            // Определяем диапазон для текущего вопроса в билете
+            const rangeStart = j * rangeSize;
+            let rangeEnd = (j + 1) * rangeSize;
+            
+            // Если выходим за пределы массива, ограничиваем последним вопросом
+            if (rangeEnd > totalQuestions) {
+                rangeEnd = totalQuestions;
             }
             
+            // Если диапазон пустой (может случиться при малом количестве вопросов)
+            if (rangeStart >= rangeEnd) {
+                // Берем случайный вопрос из оставшихся
+                const availableQuestions = questions.filter(q => !ticketQuestions.includes(q));
+                if (availableQuestions.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+                    ticketQuestions.push(availableQuestions[randomIndex]);
+                } else {
+                    // Если вопросы закончились, берем из общего списка
+                    const randomIndex = Math.floor(Math.random() * questions.length);
+                    ticketQuestions.push(questions[randomIndex]);
+                }
+                continue;
+            }
+            
+            // Выбираем случайный вопрос из текущего диапазона
+            const rangeQuestions = questions.slice(rangeStart, rangeEnd);
+            
+            // Исключаем вопросы, которые уже есть в этом билете
+            const availableRangeQuestions = rangeQuestions.filter(q => !ticketQuestions.includes(q));
+            
+            let selectedQuestion;
+            if (availableRangeQuestions.length > 0) {
+                // Если есть доступные вопросы в диапазоне, выбираем случайный из них
+                const randomIndex = Math.floor(Math.random() * availableRangeQuestions.length);
+                selectedQuestion = availableRangeQuestions[randomIndex];
+            } else {
+                // Если все вопросы из диапазона уже использованы в этом билете,
+                // выбираем случайный из всего диапазона
+                const randomIndex = Math.floor(Math.random() * rangeQuestions.length);
+                selectedQuestion = rangeQuestions[randomIndex];
+            }
+            
+            ticketQuestions.push(selectedQuestion);
+        }
+        
+        // Проверяем уникальность билета
+        const ticketKey = ticketQuestions.sort().join('|');
+        const isUnique = !tickets.some(t => t.key === ticketKey);
+        
+        if (isUnique) {
+            tickets.push({
+                id: i + 1,
+                questions: ticketQuestions,
+                key: ticketKey
+            });
+        } else {
+            // Если билет не уникален, пытаемся сгенерировать заново
+            i--;
+            
+            // Защита от бесконечного цикла
+            if (i < -100) {
+                console.warn('Не удалось сгенерировать уникальные билеты. Возможно, слишком мало вопросов.');
+                break;
+            }
+        }
+    }
+    
+    return tickets;
+}
             function displayCurrentTicket(ticket) {
                 currentTicketContainer.innerHTML = `
                     <div class="ticket-header">
@@ -801,6 +876,65 @@
                 resultsContainer.appendChild(ticketElement);
             }
             
+            // Функция для экспорта в Excel
+            exportBtn.addEventListener('click', function() {
+                if (generatedTickets.length === 0) {
+                    showNotification('Сначала сгенерируйте билеты!', 'error');
+                    return;
+                }
+                
+                try {
+                    // Создаем массив данных для Excel
+                    const data = [];
+                    
+                    // Добавляем заголовки
+                    data.push(['Билет', 'Вопросы']);
+                    
+                    // Добавляем билеты в формате: билет в первой строке, вопросы в следующих
+                    generatedTickets.forEach(ticket => {
+                        // Первая строка для билета: номер билета в первом столбце, первый вопрос во втором
+                        data.push([`Билет ${ticket.id}`, ticket.questions[0]]);
+                        
+                        // Остальные вопросы билета: пустой первый столбец, вопрос во втором
+                        for (let i = 1; i < ticket.questions.length; i++) {
+                            data.push(['', ticket.questions[i]]);
+                        }
+                        
+                        // Добавляем пустую строку между билетами для лучшей читаемости
+                        data.push(['', '']);
+                    });
+                    
+                    // Создаем рабочую книгу Excel
+                    const wb = XLSX.utils.book_new();
+                    
+                    // Создаем рабочий лист из данных
+                    const ws = XLSX.utils.aoa_to_sheet(data);
+                    
+                    // Настраиваем ширину столбцов
+                    const colWidths = [
+                        { wch: 15 }, // Ширина первого столбца (Билет)
+                        { wch: 80 }  // Ширина второго столбца (Вопросы)
+                    ];
+                    ws['!cols'] = colWidths;
+                    
+                    // Добавляем рабочий лист в книгу
+                    XLSX.utils.book_append_sheet(wb, ws, 'Билеты');
+                    
+                    // Генерируем имя файла с датой
+                    const date = new Date();
+                    const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()}`;
+                    const fileName = `билеты_${dateStr}.xlsx`;
+                    
+                    // Сохраняем файл
+                    XLSX.writeFile(wb, fileName);
+                    
+                    showNotification(`Экспортировано ${generatedTickets.length} билетов в Excel!`);
+                } catch (error) {
+                    console.error('Ошибка при экспорте в Excel:', error);
+                    showNotification('Ошибка при экспорте в Excel!', 'error');
+                }
+            });
+            
             function showNotification(message, type = 'success') {
                 notification.textContent = message;
                 notification.className = 'notification';
@@ -820,6 +954,8 @@
             
             // Инициализация статистики
             updateStats();
+            
+            
         });
     </script>
 </body>
