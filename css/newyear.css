@@ -1,0 +1,675 @@
+/* newyear.css - НОВОГОДНЯЯ ТЕМА (Классическая палитра) */
+
+:root {
+    --ny-deep-red: #b22222;         /* Глубокий красный */
+    --ny-bright-green: #228b22;      /* Ярко-зелёный */
+    --ny-gold: #ffd700;              /* Золотой */
+    --ny-white: #ffffff;             /* Белый */
+    --ny-dark-green: #006400;        /* Тёмно-зелёный */
+    --ny-cream: #fffaf0;             /* Кремовый */
+    --ny-dark-red: #8b0000;          /* Тёмный красный */
+    --ny-snow-blue: #f0f8ff;         /* Снежно-голубой */
+    --ny-champagne: #f7e7ce;         /* Шампань */
+}
+
+/* ========== СНЕЖИНКИ И АНИМАЦИИ ========== */
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.9;
+    animation-name: snowfall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+.snowflake.small {
+    width: 4px;
+    height: 4px;
+}
+
+.snowflake.medium {
+    width: 6px;
+    height: 6px;
+}
+
+.snowflake.large {
+    width: 8px;
+    height: 8px;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-10px) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+    }
+    90% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(100vh) translateX(20px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Анимация мигающих огоньков гирлянды */
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: scale(0.95);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.twinkle {
+    animation: twinkle 1.5s infinite ease-in-out;
+}
+
+/* Пульсирующая анимация для акцентов */
+@keyframes pulse {
+    0%, 100% { 
+        box-shadow: 0 0 10px var(--ny-gold);
+    }
+    50% { 
+        box-shadow: 0 0 20px var(--ny-gold), 0 0 30px var(--ny-gold);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* ========== ОСНОВНЫЕ СТИЛИ ========== */
+body.newyear-theme {
+    background: 
+        radial-gradient(circle at 10% 10%, rgba(178, 34, 34, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(34, 139, 34, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 50% 50%, rgba(0, 100, 0, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0a1a1a 0%, #0d2c2c 50%, #0a1a1a 100%);
+    color: var(--ny-cream);
+    position: relative;
+    overflow-x: auto;
+    min-height: 100vh;
+}
+
+/* Новогодние узоры на фоне */
+body.newyear-theme::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20px 20px, rgba(255, 215, 0, 0.05) 2px, transparent 3px),
+        radial-gradient(circle at 40px 40px, rgba(178, 34, 34, 0.05) 2px, transparent 3px),
+        radial-gradient(circle at 60px 60px, rgba(34, 139, 34, 0.05) 2px, transparent 3px);
+    background-size: 100px 100px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ШАПКА */
+.newyear-theme header {
+    background: linear-gradient(135deg, var(--ny-dark-green), #0a3a0a);
+    border: 3px solid var(--ny-gold);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(178, 34, 34, 0.3),
+        0 0 40px rgba(34, 139, 34, 0.2);
+}
+
+.newyear-theme header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, 
+        var(--ny-deep-red), 
+        var(--ny-gold), 
+        var(--ny-bright-green),
+        var(--ny-gold),
+        var(--ny-deep-red));
+    animation: pulse 3s infinite;
+}
+
+.newyear-theme header::after {
+    content: "❄️🎄✨";
+    position: absolute;
+    font-size: 20px;
+    animation: twinkle 3s infinite;
+    top: 15px;
+    right: 20px;
+    letter-spacing: 5px;
+}
+
+.newyear-theme h1 {
+    color: var(--ny-gold);
+    text-shadow: 
+        0 0 15px rgba(255, 215, 0, 0.8),
+        0 0 30px rgba(255, 215, 0, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    background: linear-gradient(to right, var(--ny-gold), #ffec80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.newyear-theme .subtitle {
+    color: var(--ny-cream);
+    font-size: 1.2rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* КОНТЕЙНЕРЫ */
+.newyear-theme .input-section,
+.newyear-theme .output-section {
+    background: linear-gradient(145deg, rgba(10, 50, 10, 0.95), rgba(20, 40, 20, 0.95));
+    border: 2px solid var(--ny-gold);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(34, 139, 34, 0.2),
+        inset 0 0 20px rgba(255, 215, 0, 0.1);
+    padding-left: 50px !important;
+}
+
+.newyear-theme .input-section::before,
+.newyear-theme .output-section::before {
+    content: "✦";
+    position: absolute;
+    color: var(--ny-gold);
+    font-size: 24px;
+    opacity: 0.3;
+    top: 10px;
+    right: 10px;
+    animation: twinkle 4s infinite;
+}
+
+.newyear-theme .section-title {
+    color: var(--ny-gold);
+    border-bottom: 3px solid var(--ny-deep-red);
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.6),
+        0 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding-bottom: 12px;
+    background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.1), transparent);
+}
+
+.newyear-theme .section-title::before {
+    content: "🎅";
+    position: absolute;
+    left: -35px; /* Измените с -40px на -35px */
+    animation: twinkle 2s infinite;
+    font-size: 1.5rem;
+}
+
+.newyear-theme .section-title::after {
+    content: "🦌";
+    position: absolute;
+    right: -35px; /* Измените с -40px на -35px */
+    animation: twinkle 2s infinite 0.5s;
+    font-size: 1.5rem;
+}
+
+/* ФОРМЫ */
+.newyear-theme label {
+    color: var(--ny-cream);
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.newyear-theme textarea,
+.newyear-theme input {
+    background: rgba(20, 40, 20, 0.9);
+    border: 2px solid var(--ny-bright-green);
+    color: var(--ny-cream);
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 2px 5px rgba(0, 0, 0, 0.5),
+        0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.newyear-theme textarea:focus,
+.newyear-theme input:focus {
+    border-color: var(--ny-gold);
+    box-shadow: 
+        0 0 15px rgba(255, 215, 0, 0.7),
+        0 0 30px rgba(255, 215, 0, 0.3),
+        inset 0 2px 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+/* КНОПКИ */
+.newyear-theme button {
+    background: linear-gradient(145deg, var(--ny-deep-red), var(--ny-dark-red));
+    box-shadow: 
+        0 6px 20px rgba(178, 34, 34, 0.6),
+        0 0 15px rgba(255, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--ny-gold);
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.newyear-theme button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: 0.5s;
+}
+
+.newyear-theme button:hover::before {
+    left: 100%;
+}
+
+.newyear-theme button:hover {
+    box-shadow: 
+        0 8px 25px rgba(178, 34, 34, 0.8),
+        0 0 20px rgba(255, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px) scale(1.03);
+    background: linear-gradient(145deg, var(--ny-dark-red), var(--ny-deep-red));
+}
+
+.newyear-theme button:active {
+    transform: translateY(1px);
+    box-shadow: 
+        0 3px 10px rgba(178, 34, 34, 0.6),
+        inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.newyear-theme #exportBtn {
+    background: linear-gradient(145deg, var(--ny-bright-green), var(--ny-dark-green));
+    box-shadow: 
+        0 6px 20px rgba(34, 139, 34, 0.6),
+        0 0 15px rgba(0, 255, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.newyear-theme #exportBtn:hover {
+    box-shadow: 
+        0 8px 25px rgba(34, 139, 34, 0.8),
+        0 0 20px rgba(0, 255, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(145deg, var(--ny-dark-green), var(--ny-bright-green));
+}
+
+.newyear-theme button::after {
+    content: "🎁";
+    position: absolute;
+    right: 15px;
+    opacity: 0.8;
+    animation: twinkle 2s infinite;
+}
+
+.newyear-theme #generateBtn::after {
+    content: "✨";
+}
+
+/* СЛОТ-МАШИНА */
+.newyear-theme .slot {
+    border: 4px solid var(--ny-gold);
+    background: linear-gradient(145deg, #0a2a1a, #0a1a1a);
+    box-shadow: 
+        inset 0 0 30px rgba(0, 0, 0, 0.8),
+        0 10px 25px rgba(0, 0, 0, 0.7),
+        0 0 15px rgba(255, 215, 0, 0.3);
+    position: relative;
+}
+
+.newyear-theme .slot::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.newyear-theme .slot::after {
+    content: "🎄";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    opacity: 0.6;
+    animation: twinkle 3s infinite;
+}
+
+.newyear-theme .slot-center {
+    border-color: var(--ny-gold);
+    background: rgba(255, 215, 0, 0.25);
+    box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.5),
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.newyear-theme .slot-item {
+    background: linear-gradient(to right, rgba(20, 60, 20, 0.9), rgba(30, 70, 30, 0.9));
+    color: var(--ny-cream);
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    font-size: 15px;
+    line-height: 1.4;
+    transition: background 0.3s ease;
+}
+
+.newyear-theme .slot-item:nth-child(odd) {
+    background: linear-gradient(to right, rgba(30, 70, 30, 0.9), rgba(40, 80, 40, 0.9));
+}
+
+.newyear-theme .slot-item:hover {
+    background: linear-gradient(to right, rgba(178, 34, 34, 0.2), rgba(34, 139, 34, 0.2));
+}
+
+/* БИЛЕТЫ */
+.newyear-theme .current-ticket {
+    background: linear-gradient(135deg, rgba(178, 34, 34, 0.9), rgba(139, 0, 0, 0.9));
+    border-left: 6px solid var(--ny-gold);
+    position: relative;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(178, 34, 34, 0.4);
+}
+
+.newyear-theme .current-ticket::before {
+    background: linear-gradient(90deg, 
+        var(--ny-deep-red), 
+        var(--ny-gold), 
+        var(--ny-bright-green));
+    height: 6px;
+}
+
+.newyear-theme .ticket {
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.9), rgba(0, 100, 0, 0.9));
+    border-left: 6px solid var(--ny-gold);
+    position: relative;
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(34, 139, 34, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.newyear-theme .ticket:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 12px 25px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(34, 139, 34, 0.4);
+}
+
+.newyear-theme .ticket::before {
+    background: linear-gradient(90deg, 
+        var(--ny-bright-green), 
+        var(--ny-gold), 
+        var(--ny-deep-red));
+    height: 4px;
+}
+
+.newyear-theme .ticket-header {
+    border-bottom: 2px solid rgba(255, 215, 0, 0.4);
+}
+
+.newyear-theme .ticket-title {
+    color: var(--ny-gold);
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 1.4rem;
+}
+
+.newyear-theme .ticket-questions li {
+    color: var(--ny-cream);
+    border-left: 3px solid var(--ny-gold);
+    padding-left: 15px;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+}
+
+.newyear-theme .ticket-questions li:hover {
+    color: var(--ny-gold);
+    border-left-color: var(--ny-deep-red);
+    transform: translateX(5px);
+}
+
+/* УВЕДОМЛЕНИЯ */
+.newyear-theme .notification {
+    background: linear-gradient(135deg, var(--ny-bright-green), var(--ny-dark-green));
+    border-left: 5px solid var(--ny-gold);
+    box-shadow: 
+        0 5px 20px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(34, 139, 34, 0.4);
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+/* СТАТИСТИКА */
+.newyear-theme .stats {
+    background: linear-gradient(135deg, rgba(178, 34, 34, 0.8), rgba(139, 0, 0, 0.8));
+    border: 2px solid var(--ny-gold);
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(178, 34, 34, 0.3);
+}
+
+.newyear-theme .stat-value {
+    color: var(--ny-gold);
+    text-shadow: 
+        0 0 15px rgba(255, 215, 0, 0.7),
+        0 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 2rem;
+    position: relative;
+}
+
+.newyear-theme .stat-value::after {
+    content: "✨";
+    position: absolute;
+    right: -25px;
+    animation: twinkle 2s infinite;
+}
+
+.newyear-theme .stat-label {
+    color: var(--ny-cream);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ПРОГРЕСС БАР */
+.newyear-theme .generation-progress {
+    border: 2px solid var(--ny-bright-green);
+    background: rgba(20, 40, 20, 0.8);
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.newyear-theme .progress-bar {
+    background: rgba(40, 60, 40, 0.8);
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--ny-gold);
+}
+
+.newyear-theme .progress-fill {
+    background: linear-gradient(90deg, 
+        var(--ny-deep-red), 
+        var(--ny-gold), 
+        var(--ny-bright-green));
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.9),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.newyear-theme .progress-text {
+    color: var(--ny-cream);
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.newyear-theme .gold-text {
+    color: var(--ny-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* СКРОЛЛБАР */
+.newyear-theme .results::-webkit-scrollbar {
+    width: 12px;
+}
+
+.newyear-theme .results::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom, var(--ny-dark-green), #0a2a1a);
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.newyear-theme .results::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--ny-deep-red), var(--ny-gold), var(--ny-bright-green));
+    border-radius: 10px;
+    border: 2px solid var(--ny-gold);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ВЫБОР ТЕМЫ */
+.newyear-theme .theme-selector-container {
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.8), rgba(0, 100, 0, 0.8));
+    border: 2px solid var(--ny-gold);
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(34, 139, 34, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.newyear-theme .theme-selector-container::before {
+    content: "🎄 🎅 🎁";
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    font-size: 20px;
+}
+
+.newyear-theme .theme-selector-container label {
+    color: var(--ny-gold);
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.newyear-theme .theme-select {
+    background: linear-gradient(135deg, #0a2a1a, #0a1a1a);
+    color: var(--ny-cream);
+    border: 3px solid var(--ny-gold);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 280px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.5),
+        0 5px 15px rgba(0, 0, 0, 0.3);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffd700'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+}
+
+.newyear-theme .theme-select:focus {
+    outline: none;
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.7),
+        0 0 40px rgba(255, 215, 0, 0.3),
+        inset 0 2px 10px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.newyear-theme .theme-select option {
+    background: var(--ny-dark-green);
+    color: var(--ny-cream);
+    padding: 15px;
+    font-size: 1rem;
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 1800px) {
+    .newyear-theme .container {
+        min-width: auto;
+        max-width: 95%;
+    }
+    
+    .newyear-theme .slot {
+        width: 280px;
+        height: 380px;
+    }
+    
+    .newyear-theme .slot-item {
+        height: 120px;
+        font-size: 14px;
+    }
+}
+
+/* Новогодние украшения на элементах */
+.newyear-decoration {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.christmas-ball {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.christmas-ball.red {
+    background: radial-gradient(circle at 30% 30%, var(--ny-deep-red), #8b0000);
+    color: var(--ny-deep-red);
+}
+
+.christmas-ball.green {
+    background: radial-gradient(circle at 30% 30%, var(--ny-bright-green), var(--ny-dark-green));
+    color: var(--ny-bright-green);
+}
+
+.christmas-ball.gold {
+    background: radial-gradient(circle at 30% 30%, var(--ny-gold), #b8860b);
+    color: var(--ny-gold);
+}
