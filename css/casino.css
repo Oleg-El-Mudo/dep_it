@@ -515,3 +515,144 @@
     color: var(--casino-light);
     padding: 10px;
 }
+
+/* Стили для выбора режима */
+.mode-select {
+    background: rgba(20, 20, 20, 0.9);
+    color: var(--casino-light);
+    border: 2px solid var(--casino-gold);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.mode-select:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.mode-select option {
+    background: var(--casino-dark);
+    color: var(--casino-light);
+    padding: 10px;
+}
+
+/* Контейнер для практических задач */
+.practice-container {
+    background: rgba(30, 30, 30, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid var(--casino-green);
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--casino-gold);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--casino-green);
+    padding-bottom: 8px;
+}
+
+.input-with-button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.input-with-button input {
+    flex: 1;
+}
+
+.secondary-btn {
+    background: linear-gradient(to right, var(--casino-green), var(--casino-dark-green));
+    padding: 12px 20px;
+    font-size: 1rem;
+    width: auto;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
+}
+
+.secondary-btn:hover {
+    background: linear-gradient(to right, var(--casino-green), var(--casino-dark-green));
+}
+
+/* Контейнер для полей ввода задач */
+.tasks-input-container {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 15px;
+    padding-right: 10px;
+}
+
+.tasks-input-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tasks-input-container::-webkit-scrollbar-track {
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 10px;
+}
+
+.tasks-input-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--casino-blue), #0d47a1);
+    border-radius: 10px;
+}
+
+.task-input-group {
+    margin-bottom: 15px;
+}
+
+.task-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--casino-light);
+    font-weight: normal;
+}
+
+.task-input-group textarea {
+    min-height: 60px;
+    resize: vertical;
+    font-size: 0.95rem;
+    background: rgba(40, 40, 40, 0.9);
+    border: 1px solid var(--casino-green); 
+}
+
+.task-input-group textarea:focus {
+    border-color: var(--casino-gold);
+    box-shadow: 0 0 10px rgba(46, 125, 50, 0.5); /* Изменено */
+}
+
+/* Стили для отображения билетов с задачами */
+.ticket-section {
+    margin-bottom: 20px;
+}
+
+.ticket-section:last-child {
+    margin-bottom: 0;
+}
+
+.ticket-tasks {
+    list-style-type: decimal;
+    padding-left: 25px;
+}
+
+.ticket-tasks li {
+    margin-bottom: 10px;
+    padding-left: 8px;
+    line-height: 1.5;
+    font-size: 1.05rem;
+    background: rgba(30, 30, 30, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 3px solid var(--casino-green);
+}
+
+.ticket-tasks li strong {
+    color: var(--casino-gold);
+}
